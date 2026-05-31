@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0a0a0c;
+  --color-foreground: #ffffff;
+  
+  --color-primary: #00f2ff;
+  --color-primary-dark: #00c2cc;
+  --color-primary-light: #33f5ff;
+  
+  --color-secondary: #7000ff;
+  --color-secondary-dark: #5900cc;
+  --color-secondary-light: #8c33ff;
+  
+  --color-accent: #ff00e5;
+  --color-accent-dark: #cc00b7;
+  --color-accent-light: #ff33ea;
+  
+  --color-glass: rgba(255, 255, 255, 0.03);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-hover: rgba(255, 255, 255, 0.06);
+  
+  --background-image-vibe-gradient: radial-gradient(circle at top center, #1a1a2e 0%, #0a0a0c 100%);
+  --background-image-neon-gradient: linear-gradient(45deg, #00f2ff, #7000ff);
+  
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background-color: var(--color-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+}
+
+.glass-panel-hover:hover {
+  background-color: var(--color-glass-hover);
+  border-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Neon Glow Effect */
+.neon-glow-primary {
+  box-shadow: 0 0 15px var(--color-primary), 0 0 5px var(--color-primary);
+}
+
+.neon-glow-secondary {
+  box-shadow: 0 0 15px var(--color-secondary), 0 0 5px var(--color-secondary);
+}
+
+/* Custom Gradients */
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary), var(--color-accent));
+}
+
+/* Card Hover Animations */
+.vibe-card {
+  border-radius: 1rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+}
+
+.vibe-card:hover {
+  background-color: var(--color-glass-hover);
+  border-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
