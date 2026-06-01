@@ -122,32 +122,32 @@ const Profile = () => {
           )}
         </div>
         
-        <div className="absolute -bottom-16 left-8 flex items-end gap-6">
-          <div className="w-32 h-32 rounded-3xl bg-neon-gradient p-[3px] shadow-xl">
-            <div className="w-full h-full rounded-[21px] bg-background overflow-hidden flex items-center justify-center border-4 border-background">
+        <div className="absolute -bottom-12 md:-bottom-16 left-4 md:left-8 flex items-end gap-6">
+          <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-neon-gradient p-[3px] shadow-xl">
+            <div className="w-full h-full rounded-[19px] md:rounded-[21px] bg-background overflow-hidden flex items-center justify-center border-4 border-background">
               {profileData?.profilePicture ? (
                 <img src={profileData.profilePicture} alt="Avatar" className="w-full h-full object-cover" />
               ) : (
-                <div className="text-4xl font-bold text-primary">{profileData?.username?.[0]?.toUpperCase()}</div>
+                <div className="text-2xl md:text-4xl font-bold text-primary">{profileData?.username?.[0]?.toUpperCase()}</div>
               )}
             </div>
           </div>
         </div>
 
-        <div className="absolute -bottom-16 right-8 flex gap-3">
+        <div className="absolute -bottom-12 md:-bottom-16 right-4 md:right-8 flex gap-2 md:gap-3">
           {!isOwnProfile && (
             <>
               <Button 
                 onClick={handleMessage}
                 variant="secondary"
-                className="p-3"
+                className="p-2 md:p-3"
               >
-                <MessageSquare size={20} />
+                <MessageSquare size={18} className="md:w-5 md:h-5" />
               </Button>
               <Button 
                 onClick={handleFollow}
                 variant={isFollowing ? "secondary" : "primary"}
-                className="px-8"
+                className="px-4 md:px-8 text-xs md:text-sm"
               >
                 {isFollowing ? 'Unfollow' : 'Follow'}
               </Button>
@@ -157,7 +157,7 @@ const Profile = () => {
       </div>
 
       {/* User Stats & Bio */}
-      <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <GlassCard className="md:col-span-2">
           <h2 className="text-3xl font-bold mb-1">{profileData?.username}</h2>
           <p className="text-white/40 text-sm mb-4">@{profileData?.username.toLowerCase()}</p>

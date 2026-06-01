@@ -6,7 +6,7 @@ import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { useAuth } from '../context/AuthContext';
 import { useSocket } from '../context/SocketContext';
-import { Send, Search, User, MessageSquare, Smile } from 'lucide-react';
+import { Send, Search, User, MessageSquare, Smile, ArrowLeft } from 'lucide-react';
 import EmojiPicker from 'emoji-picker-react';
 
 import { useLocation } from 'react-router-dom';
@@ -171,9 +171,9 @@ const Messages = () => {
 
   return (
     <MainLayout>
-      <div className="flex gap-6 h-[calc(100vh-160px)]">
+      <div className="flex gap-6 h-[calc(100vh-220px)] lg:h-[calc(100vh-160px)]">
         {/* Conversation List */}
-        <div className="w-80 flex flex-col gap-4">
+        <div className={`w-full lg:w-80 flex flex-col gap-4 ${activeChat ? 'hidden lg:flex' : 'flex'}`}>
           <div className="flex items-center justify-between px-2">
             <h2 className="text-2xl font-bold">Messages</h2>
           </div>
@@ -222,7 +222,7 @@ const Messages = () => {
         </div>
 
         {/* Chat Window */}
-        <div className="flex-1 flex flex-col glass-panel rounded-3xl overflow-hidden border-white/5">
+        <div className={`flex-1 flex flex-col lg:glass-panel lg:rounded-3xl overflow-hidden lg:border lg:border-white/5 ${activeChat ? 'flex' : 'hidden lg:flex'}`}>
           {activeChat ? (
             <>
               {/* Chat Header */}
@@ -230,6 +230,13 @@ const Messages = () => {
                 const otherUser = activeChat.participants.find(p => p._id !== user._id);
                 return (
                   <div className="p-4 border-b border-white/5 flex items-center gap-4 bg-white/[0.02]">
+                    <button 
+                      type="button" 
+                      onClick={() => setActiveChat(null)} 
+                      className="lg:hidden p-2 mr-1 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+                    >
+                      <ArrowLeft size={20} />
+                    </button>
                     <div className="w-10 h-10 rounded-full overflow-hidden bg-white/10">
                       {otherUser?.profilePicture ? (
                         <img src={otherUser.profilePicture} alt="" className="w-full h-full object-cover" />
@@ -268,43 +275,43 @@ const Messages = () => {
 
               {/* Input Area */}
               <form
-  onSubmit={handleSendMessage}
-  className="relative p-4 border-t border-white/5 bg-white/[0.02] flex gap-3 items-center"
->
+                onSubmit={handleSendMessage}
+                className="relative p-4 border-t border-white/5 bg-white/[0.02] flex gap-3 items-center"
+              >
 
-  {showEmojiPicker && (
-    <div className="absolute bottom-20 right-20 z-50">
-      <EmojiPicker
-        onEmojiClick={handleEmojiClick}
-        theme="dark"
-      />
-    </div>
-  )}
+                {showEmojiPicker && (
+                  <div className="absolute bottom-20 right-4 lg:right-20 z-50">
+                    <EmojiPicker
+                      onEmojiClick={handleEmojiClick}
+                      theme="dark"
+                    />
+                  </div>
+                )}
 
-  <Input
-    placeholder="Type a message..."
-    className="bg-white/5"
-    value={newMessage}
-    onChange={(e) => setNewMessage(e.target.value)}
-  />
+                <Input
+                  placeholder="Type a message..."
+                  className="bg-white/5"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                />
 
-  <button
-    type="button"
-    onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-    className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition"
-  >
-    <Smile size={20} />
-  </button>
+                <button
+                  type="button"
+                  onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                  className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition"
+                >
+                  <Smile size={20} />
+                </button>
 
-  <Button
-    type="submit"
-    size="icon"
-    className="w-12 h-12 flex-shrink-0"
-  >
-    <Send size={20} />
-  </Button>
+                <Button
+                  type="submit"
+                  size="icon"
+                  className="w-12 h-12 flex-shrink-0"
+                >
+                  <Send size={20} />
+                </Button>
 
-</form>
+              </form>
             </>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-white/20 p-10 text-center">

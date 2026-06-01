@@ -48,7 +48,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-64 h-screen sticky top-0 flex flex-col p-4 glass-panel border-y-0 border-l-0">
+    <div className="hidden lg:flex w-64 h-screen sticky top-0 flex-col p-4 glass-panel border-y-0 border-l-0">
       <div className="flex items-center gap-3 px-4 mb-10">
         <div className="w-10 h-10 rounded-xl bg-neon-gradient flex items-center justify-center shadow-lg shadow-primary/20">
           <Zap className="text-white" size={24} fill="white" />
